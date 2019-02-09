@@ -1,0 +1,43 @@
+package samples;
+
+import standardClasses.Node;
+
+public class TreeImplementation {
+
+	Node root;
+	public TreeImplementation(int key) {
+// form the root of the tree		
+		root = new Node(key);
+	
+	}
+		
+	public void addRightTreeNode(Node parent, int key) {
+	  // form list otr Map to form general tree
+  }
+	
+public void addLeftTreeNode() {
+		// form list otr Map to form general tree
+	}
+
+public static void main(String[] args) {
+	TreeImplementation treeimpl = new TreeImplementation(1);
+	treeimpl.root.left= new Node(2);
+	treeimpl.root.right= new Node(3);
+}
+}
+
+
+package standardClasses;
+
+public class Node {
+
+	int key;
+	public Node left;
+	public Node right;
+
+	public Node(int item) 
+	{ 
+		key = item; 
+		left = right = null; 
+	} 
+}
