@@ -1,0 +1,102 @@
+package samples;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import standardClasses.Employee;
+
+public class StreamApiSamples {
+
+// adding the numbers in the map	
+	public int sumIterator(List<Integer> sampleList ) {
+// single line code instead of iterating , having a temp variable and calulating the output
+		return sampleList.stream().filter(i->i>10).mapToInt(i->i).sum();
+	}
+	
+  // flat map, breaks all the values in the map and forms a different object or data structure 
+	public void flatMapSample() {
+		List<String> stringList = new ArrayList<String>();
+
+		stringList.add("One flew over the cuckoo's nest");
+		stringList.add("To kill a muckingbird");
+		stringList.add("Gone with the wind");
+
+		Stream<String> stream = stringList.stream();
+
+		stream.flatMap((value) -> {
+    // different array list is formed where it has single words taken from the list
+		    String[] split = value.split(" ");
+		    return (Stream<String>) Arrays.asList(split).stream();
+		}).forEach((value) -> System.out.println(value));
+
+	}
+	
+  // reduce stream, which can form one output from the lost of objects avaiable inthe map
+	public void reduceSample() {
+		List<String> stringList = new ArrayList<String>();
+
+		stringList.add("One flew over the cuckoo's nest");
+		stringList.add("To kill a muckingbird");
+		stringList.add("Gone with the wind");
+
+		Stream<String> stream = stringList.stream();
+
+		Optional<String> reduced = stream.reduce((value, combinedValue) -> {
+		    // logic to combine the results
+        return combinedValue + " " + value;
+		});
+
+		System.out.println(reduced.get());
+	}
+	
+  // concatinating String objects in a map of objects 
+	public void joiningSample() {
+		List<Employee> employeeList = new ArrayList<Employee>();
+		Employee emp1 = new Employee();
+		emp1.setEmailId("email1@something.com");
+		Employee emp2 = new Employee();
+		emp2.setEmailId("email2@something.com");
+		Employee emp3 = new Employee();
+		emp3.setEmailId("email3@something.com");
+		Employee emp4 = new Employee();
+		emp4.setEmailId("email4@something.com");
+		
+		employeeList.add(emp1);
+		employeeList.add(emp2);
+		employeeList.add(emp3);
+		employeeList.add(emp4);
+		
+    // picking out emailId from Employee Object and concatinating them with "," which will result in email List
+		String emailList = employeeList.stream().map(e->e.getEmailId()).collect(Collectors.joining(","));
+		System.out.println(emailList);
+	}
+	
+	public static void main(String[] args) {
+		List mainArrayList = new ArrayList<>();
+//		Stream filterArrayList = new ;
+		mainArrayList.add(1);
+		mainArrayList.add(2);
+		mainArrayList.add(5);
+		mainArrayList.add(10);
+		mainArrayList.add(12);
+		mainArrayList.add(20);
+		
+		mainArrayList.stream();
+		Stream<Integer> i =Stream.iterate(40,n->n+2);
+		
+		StreamApiSamples ss = new StreamApiSamples();
+	/*	int filterArrayList= ss.sumIterator(mainArrayList);
+		System.out.println( filterArrayList);
+*/
+		
+		ss.joiningSample();
+		
+				
+	} 
+}
