@@ -1,0 +1,14 @@
+public class LambdaExpression {
+
+	public static void main(String[] args) {
+		String address="Kalyan Nagar";
+		String area="Bangalore";
+// Lambda Expression
+//operator- Token and Body
+// Body need not have braces if its single line
+EmployeeInterface ei = (a,b)->{
+			String c =( a+"\n"+b); return c;};
+		String fullAddress = ei.address(address,area);
+		System.out.println(fullAddress);
+	}
+}
