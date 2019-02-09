@@ -1,0 +1,16 @@
+
+// get number of days between two dates
+long numberOfDays = ChronoUnit.DAYS.between(startDate,endDate);
+
+// get number of months between dates
+long numberOfMonths = ChronoUnit.MONTHS.between(startDate,endDate);
+
+// get number of years between dates
+long numberOfYears = ChronoUnit.YEARS.between(startDate,endDate);
+
+// set date with week number and day of the week using TemporalAdjusters
+String dayOfTheWeek = FRIDAY;
+int numberOfTheWeek = 2;
+		LocalDate d = LocalDate.now();
+		d = d.with(TemporalAdjusters.dayOfWeekInMonth(numberOfTheWeek, DayOfWeek.valueOf(dayOfTheWeek))); 
+
